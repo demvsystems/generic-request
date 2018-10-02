@@ -73,7 +73,7 @@ abstract class AbstractGenericRequest implements GenericRequestInterface
             $this->getMethod(),
             $this->getTarget(),
             $this->getHeader(),
-            json_encode($body)
+            $body
         );
 
         $this->setRequest($request);
@@ -92,6 +92,10 @@ abstract class AbstractGenericRequest implements GenericRequestInterface
      */
     public function getRequest(): RequestInterface
     {
+        if ($this->request === null) {
+            $this->setBody(null);
+        }
+
         return $this->request;
     }
 }
