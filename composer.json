@@ -1,0 +1,19 @@
+{
+    "name": "demvsystems/generic-request",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Randy Schütt",
+            "email": "r.schuett@demv.de"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Demv\\GenericRequest\\": "src/"
+        }
+    }
+}
