@@ -35,6 +35,10 @@ final class GenericRequestBuilder
      * @var array
      */
     private $header = [];
+    /**
+     * @var array
+     */
+    private $params = [];
 
     /**
      * @return GenericRequestBuilder
@@ -163,7 +167,7 @@ final class GenericRequestBuilder
     {
         $request = new ConfigurableGenericRequest();
         $request->setHeader($this->header);
-        $request->setTarget($this->target);
+        $request->setTarget($this->buildTargetUrl());
         $request->setMethod($this->method);
 
         if ($this->client !== null) {
@@ -177,5 +181,50 @@ final class GenericRequestBuilder
         }
 
         return $request;
+    }
+
+    /**
+     * @param string $key
+     * @param string $value
+     *
+     * @return GenericRequestBuilder
+     */
+    public function withNamedParam(string $key, string $value): self
+    {
+        $this->params[$key] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $param
+     *
+     * @return GenericRequestBuilder
+     */
+    public function withParam(string $param): self
+    {
+        $this->params[] = $param;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    private function buildTargetUrl(): string
+    {
+        $target = $this->target;
+        if (substr($target, -1) === '/' && !empty($this->params)) {
+            $target = substr($target, 0, strlen($target) - 1);
+        }
+        foreach ($this->params as $key => $value) {
+            if (is_string($key)) {
+                $target .= sprintf('/%s/%s', $key, $value);
+            } else {
+                $target .= sprintf('/%s', $value);
+            }
+        }
+
+        return $target;
     }
 }
