@@ -8,13 +8,18 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "guzzlehttp/guzzle": "^6.3",
-        "ext-json": "*"
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-4": {
             "Demv\\GenericRequest\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.0"
         }
     }
 }
