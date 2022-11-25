@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Demv\GenericRequest;
+namespace Demv\GenericRequest\Tests;
 
 use Demv\GenericRequest\GenericRequestBuilder;
 use Demv\GenericRequest\GenericRequestInterface;

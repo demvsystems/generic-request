@@ -19,7 +19,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\Demv\\GenericRequest\\": "tests/"
+            "Demv\\GenericRequest\\Tests\\": "tests/"
         }
     },
     "require-dev": {
