@@ -3,13 +3,13 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Randy Schütt",
-            "email": "r.schuett@demv.de"
+            "name": "Team Rocket",
+            "email": "team-rocket@demv.de"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "guzzlehttp/guzzle": "^6.3",
+        "php": ">=7.4",
+        "guzzlehttp/guzzle": "^7",
         "ext-json": "*"
     },
     "autoload": {
