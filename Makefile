@@ -1,20 +1,23 @@
 DOCKER_PHP_SERVICE = php-fpm
 
-.PHONY: docker-new docker-composer docker-up docker-kill docker-test
+.PHONY: composer-install composer-update test new up kill
 
-docker-new: docker-kill
+composer-install:
+	docker-compose exec $(DOCKER_PHP_SERVICE) composer install --optimize-autoloader
+
+composer-update:
+	docker-compose exec $(DOCKER_PHP_SERVICE) composer update
+
+test:
+	docker-compose exec $(DOCKER_PHP_SERVICE) composer test
+
+new: kill
 	docker-compose up -d --build --remove-orphans
 	make docker-composer-install
 
-docker-composer-install:
-	docker-compose exec $(DOCKER_PHP_SERVICE) composer install --optimize-autoloader
-
-docker-composer-update:
-	docker-compose exec $(DOCKER_PHP_SERVICE) composer update --lock
-
-docker-up:
+up:
 	docker-compose up -d
 
-docker-kill:
+kill:
 	docker-compose kill
 	docker-compose down --volumes --remove-orphans
